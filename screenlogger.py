@@ -1,8 +1,12 @@
 import pyautogui
-from time import sleep
+from pynput.mouse import Button, Listener
 from datetime import *
 
-while True:
-    sleep(5)
-    im1 = pyautogui.screenshot()
-    im1.save(f'{datetime.now()}.png')
+def clicou(x,y, botao, pressionado):
+    if pressionado == True:
+        im1 = pyautogui.screenshot()
+        im1.save(f'{datetime.now()}.png')
+
+listener = Listener(on_click=clicou)
+listener.start()
+listener.join()
